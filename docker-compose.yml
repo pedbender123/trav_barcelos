@@ -1,0 +1,26 @@
+services:
+  frontend:
+    build: .
+    container_name: travel-frontend
+    ports:
+      - "127.0.0.1:3000:80" # Exposed only to localhost
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - travel-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: travel-backend
+    ports:
+      - "127.0.0.1:3001:3001" # Exposed only to localhost
+    restart: unless-stopped
+    networks:
+      - travel-network
+
+networks:
+  travel-network:
+    driver: bridge
