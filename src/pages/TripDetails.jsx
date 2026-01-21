@@ -28,19 +28,19 @@ export default function TripDetails() {
             // Image Sets for Diversity
             const imageSets = [
                [ // Set 0 (Beach/Maldives style)
-                  'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?q=80&w=2574&auto=format&fit=crop',
-                  'https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?q=80&w=2670&auto=format&fit=crop',
-                  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2670&auto=format&fit=crop',
+                  'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop', // Reliable Beach
+                  'https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=2000&auto=format&fit=crop', // Resort
+                  'https://images.unsplash.com/photo-1519046904884-53103b34b271?q=80&w=2000&auto=format&fit=crop', // Palm trees
                ],
                [ // Set 1 (City/Europe style)
-                  'https://images.unsplash.com/photo-1499856871940-a09627c6d7db?q=80&w=2000&auto=format&fit=crop',
-                  'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2000&auto=format&fit=crop',
-                  'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?q=80&w=2000&auto=format&fit=crop',
+                  'https://images.unsplash.com/photo-1471306224500-6d0d218be372?q=80&w=2000&auto=format&fit=crop', // City street
+                  'https://images.unsplash.com/photo-1486299267070-83823f5448dd?q=80&w=2000&auto=format&fit=crop', // London/Architecture
+                  'https://images.unsplash.com/photo-1554939437-ecc490059cee?q=80&w=2000&auto=format&fit=crop', // Cafe
                ],
                [ // Set 2 (Nature/Adventure style)
-                  'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2000&auto=format&fit=crop',
-                  'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000&auto=format&fit=crop',
-                  'https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?q=80&w=2000&auto=format&fit=crop',
+                  'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2000&auto=format&fit=crop', // Mountain
+                  'https://images.unsplash.com/photo-1533240332313-0db49b459ad6?q=80&w=2000&auto=format&fit=crop', // Hiking
+                  'https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=2000&auto=format&fit=crop', // Outdoor gear/camp
                ]
             ];
 
