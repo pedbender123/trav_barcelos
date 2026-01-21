@@ -27,4 +27,4 @@ def get_offer(offer_id):
     return jsonify(dict(offer))
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=4002, debug=True)
+    app.run(host='0.0.0.0', port=3001, debug=True)

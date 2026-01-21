@@ -9,8 +9,8 @@ O sistema é totalmente dockerizado e pronto para deploy.
 
 ## Portas de Configuração
 
-- **Frontend**: 4001
-- **Backend API**: 4002
+- **Frontend**: 3000
+- **Backend API**: 3001
 
 *Nota: A porta 3001 foi liberada para evitar conflitos.*
 
@@ -41,7 +41,7 @@ docker-compose up -d --build
 - O Nginx irá servir o frontend na porta 4001 e fazer proxy das requisições `/api` para o backend na porta 4002.
 
 3. Acesse:
-- http://localhost:4001 (ou IP da sua VPS:4001)
+- http://localhost:3000 (ou IP da sua VPS:3000)
 
 ## Estrutura
 
