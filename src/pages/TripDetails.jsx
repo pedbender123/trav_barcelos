@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Clock, Star, Shield, Check, Calendar, Users, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
@@ -6,7 +6,11 @@ import clsx from 'clsx';
 
 export default function TripDetails() {
    const { id } = useParams();
+   const [searchParams] = useSearchParams();
+   const initialDate = searchParams.get('date') || '';
+
    const [guests, setGuests] = useState(1);
+   const [selectedDate, setSelectedDate] = useState(initialDate);
    const [trip, setTrip] = useState(null);
    const [loading, setLoading] = useState(true);
    const [error, setError] = useState(null);
