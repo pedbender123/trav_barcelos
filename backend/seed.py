@@ -17,7 +17,7 @@ def seed_data():
     offers = [
         (
             'Maldivas - Tudo Incluído',
-            'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=2667&auto=format&fit=crop',
+            '/images/gallery/beach-1.jpg',
             '7 Dias / 6 Noites',
             '1.200€',
             'Maldivas',
@@ -28,7 +28,7 @@ def seed_data():
         ),
         (
             'Santorini - Pôr do Sol',
-            'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=2938&auto=format&fit=crop',
+            '/images/gallery/beach-2.jpg',
             '5 Dias / 4 Noites',
             '850€',
             'Grécia',
@@ -39,7 +39,7 @@ def seed_data():
         ),
         (
             'Kyoto - Templo Dourado',
-            'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2670&auto=format&fit=crop',
+            '/images/gallery/nature-1.jpg',
             '10 Dias / 9 Noites',
             '2.100€',
             'Japão',
@@ -50,7 +50,7 @@ def seed_data():
         ),
         (
            'Paris - Cidade Luz',
-           'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2673&auto=format&fit=crop',
+           '/images/gallery/city-1.jpg',
            '4 Dias / 3 Noites',
            '650€',
            'França',
@@ -61,7 +61,7 @@ def seed_data():
         ),
         (
             'Nova York - Cidade Que Nunca Dorme',
-            'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=2670&auto=format&fit=crop',
+            '/images/gallery/city-2.jpg',
             '6 Dias / 5 Noites',
             '1.500€',
             'EUA',
@@ -72,7 +72,7 @@ def seed_data():
         ),
          (
             'Bali - Paraíso Tropical',
-            'https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2638&auto=format&fit=crop',
+            '/images/gallery/nature-2.jpg',
             '8 Dias / 7 Noites',
             '1.100€',
             'Indonésia',
