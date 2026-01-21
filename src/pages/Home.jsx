@@ -26,15 +26,75 @@ const features = [
 
 import { useLocation } from 'react-router-dom';
 
+// Skeleton Component
+function SkeletonCard() {
+  return (
+    <div className="rounded-2xl bg-white shadow-lg h-full flex flex-col overflow-hidden animate-pulse">
+      {/* Image Skeleton */}
+      <div className="h-[280px] bg-gray-200" />
+
+      {/* Content Skeleton */}
+      <div className="p-5 flex flex-col flex-1 space-y-3">
+        {/* Location */}
+        <div className="h-3 w-20 bg-gray-200 rounded" />
+
+        {/* Title */}
+        <div className="h-6 w-3/4 bg-gray-200 rounded mb-2" />
+
+        {/* Duration */}
+        <div className="h-4 w-1/3 bg-gray-200 rounded" />
+
+        {/* Description */}
+        <div className="space-y-2 mb-4">
+          <div className="h-3 w-full bg-gray-200 rounded" />
+          <div className="h-3 w-5/6 bg-gray-200 rounded" />
+        </div>
+
+        <div className="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
+          <div className="space-y-1">
+            <div className="h-2 w-12 bg-gray-200 rounded" />
+            <div className="h-6 w-16 bg-gray-200 rounded" />
+          </div>
+          <div className="h-4 w-20 bg-gray-200 rounded" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [featuredTrips, setFeaturedTrips] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const location = useLocation();
 
+  const fetchOffers = async (retries = 3) => {
+    setLoading(true);
+    setError(false);
+
+    for (let i = 0; i < retries; i++) {
+      try {
+        const res = await fetch('/api/offers');
+        if (!res.ok) throw new Error("Fetch failed");
+        const data = await res.json();
+        setFeaturedTrips(data);
+        setLoading(false);
+        return;
+      } catch (err) {
+        console.error(`Attempt ${i + 1} failed:`, err);
+        if (i === retries - 1) {
+          setError(true);
+          setLoading(false);
+        } else {
+          // Wait 1s before retry
+          await new Promise(r => setTimeout(r, 1000));
+        }
+      }
+    }
+  };
+
   useEffect(() => {
-    fetch('/api/offers')
-      .then(res => res.json())
-      .then(data => setFeaturedTrips(data))
-      .catch(err => console.error("Error fetching offers:", err));
+    fetchOffers();
   }, []);
 
   // Handle Hash Scroll
@@ -134,7 +194,22 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredTrips.length > 0 ? (
+          {loading ? (
+            // Show 6 Skeletons while loading
+            Array.from({ length: 6 }).map((_, i) => (
+              <SkeletonCard key={i} />
+            ))
+          ) : error ? (
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-20 flex flex-col items-center">
+              <p className="text-gray-500 text-xl mb-4">Não foi possível carregar as ofertas.</p>
+              <button
+                onClick={() => fetchOffers()}
+                className="px-6 py-2 bg-secondary text-white rounded-lg hover:bg-blue-700 transition"
+              >
+                Tentar Novamente
+              </button>
+            </div>
+          ) : featuredTrips.length > 0 ? (
             featuredTrips.map((trip, index) => (
               <motion.div
                 key={trip.id}
@@ -148,7 +223,7 @@ export default function Home() {
             ))
           ) : (
             <div className="col-span-3 text-center py-20">
-              <p className="text-gray-500 text-xl">Carregando ofertas exclusivas...</p>
+              <p className="text-gray-500 text-xl">Nenhuma oferta encontrada no momento.</p>
             </div>
           )}
         </div>
