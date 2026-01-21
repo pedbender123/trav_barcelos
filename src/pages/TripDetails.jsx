@@ -46,7 +46,7 @@ export default function TripDetails() {
             // Enforce mock itinerary/included/reviews if not in DB (simple MVP adaptation)
             const enrichedData = {
                ...data,
-               rating: 4.8 + (parseInt(id) % 3) * 0.1, // Varied rating 4.8-5.0
+               rating: (4.8 + (parseInt(id) % 3) * 0.1).toFixed(2), // Varied rating 4.80-5.00
                reviews: 80 + (parseInt(id) * 12),
                images: [
                   data.image, // Main image from DB
@@ -88,7 +88,10 @@ export default function TripDetails() {
    }
 
    const handleReservation = () => {
-      const message = `Olá! Tenho interesse na viagem: ${trip.title} para ${guests} pessoas.`;
+      let message = `Olá! Tenho interesse na viagem: *${trip.title}* para *${guests} pessoas*.`;
+      if (selectedDate) {
+         message += `\nData de preferência: *${selectedDate}*`;
+      }
       const whatsappUrl = `https://api.whatsapp.com/send?phone=351912099663&text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
    };
@@ -224,6 +227,8 @@ export default function TripDetails() {
                                  <input
                                     type="date"
                                     className="w-full pl-10 pr-4 py-3 bg-gray-50 rounded-xl border-none focus:ring-2 focus:ring-secondary/20 font-medium text-gray-700"
+                                    value={selectedDate}
+                                    onChange={(e) => setSelectedDate(e.target.value)}
                                  />
                               </div>
                            </div>

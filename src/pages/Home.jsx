@@ -66,7 +66,25 @@ export default function Home() {
   const [featuredTrips, setFeaturedTrips] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  // Search State
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchDate, setSearchDate] = useState('');
+
   const location = useLocation();
+
+  // Filter trips based on search
+  const filteredTrips = featuredTrips.filter(trip =>
+    trip.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    trip.location.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleSearchScroll = () => {
+    const element = document.getElementById('destinos');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const fetchOffers = async (retries = 3) => {
     setLoading(true);
@@ -157,17 +175,24 @@ export default function Home() {
                 type="text"
                 placeholder="Para onde você quer ir?"
                 className="w-full text-gray-700 outline-none placeholder:text-gray-400 font-medium"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
             <div className="flex-1 px-4 py-3 flex items-center gap-3 border-b md:border-b-0 md:border-r border-gray-100">
               <CalendarIcon className="h-5 w-5 text-gray-400" />
               <input
-                type="text"
+                type="date"
                 placeholder="Quando?"
                 className="w-full text-gray-700 outline-none placeholder:text-gray-400 font-medium"
+                value={searchDate}
+                onChange={(e) => setSearchDate(e.target.value)}
               />
             </div>
-            <button className="bg-secondary hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg">
+            <button
+              onClick={handleSearchScroll}
+              className="bg-secondary hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+            >
               <Search className="h-5 w-5" />
               <span>Buscar</span>
             </button>
@@ -209,8 +234,8 @@ export default function Home() {
                 Tentar Novamente
               </button>
             </div>
-          ) : featuredTrips.length > 0 ? (
-            featuredTrips.map((trip, index) => (
+          ) : filteredTrips.length > 0 ? (
+            filteredTrips.map((trip, index) => (
               <motion.div
                 key={trip.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -218,12 +243,12 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <TripCard {...trip} />
+                <TripCard {...trip} searchDate={searchDate} />
               </motion.div>
             ))
           ) : (
             <div className="col-span-3 text-center py-20">
-              <p className="text-gray-500 text-xl">Nenhuma oferta encontrada no momento.</p>
+              <p className="text-gray-500 text-xl">Nenhuma oferta encontrada para sua busca.</p>
             </div>
           )}
         </div>

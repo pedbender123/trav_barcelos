@@ -13,9 +13,11 @@ import { Link } from 'react-router-dom';
  * @property {string} [badge]
  */
 
-export default function TripCard({ id, title, image, duration, price, location, badge, description_short }) {
+export default function TripCard({ id, title, image, duration, price, location, badge, description_short, searchDate }) {
+  const linkTo = searchDate ? `/destinos/${id}?date=${searchDate}` : `/destinos/${id}`;
+
   return (
-    <Link to={`/destinos/${id}`} className="group block h-full">
+    <Link to={linkTo} className="group block h-full">
       <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl h-full flex flex-col">
         {/* Image Container */}
         <div className="relative h-[280px] overflow-hidden">
@@ -24,7 +26,7 @@ export default function TripCard({ id, title, image, duration, price, location, 
             alt={title}
             className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
-          
+
           {/* Badge */}
           {badge && (
             <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md">
@@ -50,10 +52,10 @@ export default function TripCard({ id, title, image, duration, price, location, 
         {/* Content */}
         <div className="p-5 flex flex-col flex-1">
           <div className="mb-2 flex items-center gap-1 text-gray-500 text-xs font-medium uppercase tracking-wide">
-             <MapPin className="h-3 w-3" />
-             {location}
+            <MapPin className="h-3 w-3" />
+            {location}
           </div>
-          
+
           <h3 className="text-xl font-bold text-primary mb-2 line-clamp-1 group-hover:text-secondary transition-colors">
             {title}
           </h3>
@@ -74,7 +76,7 @@ export default function TripCard({ id, title, image, duration, price, location, 
               <span className="text-xs text-gray-400">A partir de</span>
               <span className="text-2xl font-bold text-secondary">{price}</span>
             </div>
-            
+
             <span className="flex items-center gap-1 text-sm font-bold text-primary transition-transform duration-300 group-hover:translate-x-1">
               Saber mais <ArrowRight className="h-4 w-4" />
             </span>
