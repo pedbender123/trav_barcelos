@@ -31,7 +31,7 @@ export default function Home() {
   const location = useLocation();
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/offers')
+    fetch('/api/offers')
       .then(res => res.json())
       .then(data => setFeaturedTrips(data))
       .catch(err => console.error("Error fetching offers:", err));
@@ -48,7 +48,7 @@ export default function Home() {
         }
       }, 100);
     } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [location, featuredTrips]); // Run on location change or when trips load
 
@@ -68,13 +68,13 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-20 container mx-auto px-6 text-center">
-          <h1 
+          <h1
             className="text-4xl md:text-6xl font-sans font-bold text-white mb-6 leading-tight shadow-md"
           >
             Explore o Mundo com a <br className="hidden md:block" />
             <span className="text-accent">Travel Barcelos</span>
           </h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -93,17 +93,17 @@ export default function Home() {
           >
             <div className="flex-1 px-4 py-3 flex items-center gap-3 border-b md:border-b-0 md:border-r border-gray-100">
               <MapPinIcon className="h-5 w-5 text-gray-400" />
-              <input 
-                type="text" 
-                placeholder="Para onde você quer ir?" 
+              <input
+                type="text"
+                placeholder="Para onde você quer ir?"
                 className="w-full text-gray-700 outline-none placeholder:text-gray-400 font-medium"
               />
             </div>
             <div className="flex-1 px-4 py-3 flex items-center gap-3 border-b md:border-b-0 md:border-r border-gray-100">
               <CalendarIcon className="h-5 w-5 text-gray-400" />
-              <input 
-                type="text" 
-                placeholder="Quando?" 
+              <input
+                type="text"
+                placeholder="Quando?"
                 className="w-full text-gray-700 outline-none placeholder:text-gray-400 font-medium"
               />
             </div>
@@ -118,9 +118,9 @@ export default function Home() {
       {/* Featured Trips Section */}
       <section id="destinos" className="py-24 container mx-auto px-6">
         {/* Helper for generic offers link */}
-        <div id="ofertas" className="absolute -mt-24" /> 
+        <div id="ofertas" className="absolute -mt-24" />
         <div className="flex items-center justify-between mb-12">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -147,15 +147,15 @@ export default function Home() {
               </motion.div>
             ))
           ) : (
-             <div className="col-span-3 text-center py-20">
-               <p className="text-gray-500 text-xl">Carregando ofertas exclusivas...</p>
-             </div>
+            <div className="col-span-3 text-center py-20">
+              <p className="text-gray-500 text-xl">Carregando ofertas exclusivas...</p>
+            </div>
           )}
         </div>
-        
+
         <div className="mt-8 text-center md:hidden">
           <button className="text-secondary font-bold inline-flex items-center gap-1">
-             Ver todas as ofertas <ArrowRight className="h-4 w-4" />
+            Ver todas as ofertas <ArrowRight className="h-4 w-4" />
           </button>
         </div>
       </section>
@@ -192,34 +192,34 @@ export default function Home() {
 
       {/* CTA / Newsletter Section */}
       <section className="py-24 bg-primary text-white relative isolate overflow-hidden">
-         {/* Background pattern */}
-         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-            <svg viewBox="0 0 1024 1024" className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
-              <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fillOpacity="0.7" />
-              <defs>
-                <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
-                  <stop stopColor="#38BDF8" />
-                  <stop offset="1" stopColor="#2563EB" />
-                </radialGradient>
-              </defs>
-            </svg>
-         </div>
+        {/* Background pattern */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <svg viewBox="0 0 1024 1024" className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
+            <circle cx="512" cy="512" r="512" fill="url(#759c1415-0410-454c-8f7c-9a820de03641)" fillOpacity="0.7" />
+            <defs>
+              <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                <stop stopColor="#38BDF8" />
+                <stop offset="1" stopColor="#2563EB" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
 
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div
-             initial={{ opacity: 0, scale: 0.95 }}
-             whileInView={{ opacity: 1, scale: 1 }}
-             viewport={{ once: true }}
-             className="max-w-3xl mx-auto"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
           >
             <Mail className="h-12 w-12 text-accent mx-auto mb-6" />
             <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">Pronto para sua próxima aventura?</h2>
             <p className="text-blue-100 text-lg mb-10 max-w-xl mx-auto">Receba ofertas exclusivas e roteiros secretos diretamente no seu e-mail. Não enviamos spam, apenas sonhos.</p>
-            
+
             <div className="flex flex-col sm:flex-row justify-center gap-4 max-w-lg mx-auto">
-              <input 
-                type="email" 
-                placeholder="Seu melhor e-mail" 
+              <input
+                type="email"
+                placeholder="Seu melhor e-mail"
                 className="px-6 py-4 rounded-xl text-primary font-medium w-full focus:outline-none focus:ring-2 focus:ring-accent"
               />
               <button className="px-8 py-4 bg-secondary hover:bg-blue-600 text-white font-bold rounded-xl shadow-lg transition-colors whitespace-nowrap">

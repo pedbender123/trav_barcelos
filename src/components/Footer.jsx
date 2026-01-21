@@ -8,9 +8,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-6">
-               <span className="text-2xl font-serif font-black tracking-tighter text-white">
-                  TRAVEL<span className="text-secondary">BARCELOS</span>
-               </span>
+              <img src="/logo.png" alt="Travel Barcelos" className="h-12 w-auto" />
             </div>
             <p className="text-blue-100/80 leading-relaxed mb-6">
               Sua agência de viagens de confiança. Transformando sonhos em destinos inesquecíveis com segurança e qualidade.
@@ -31,14 +29,14 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex gap-4 items-start">
                 <MapPin className="h-6 w-6 text-secondary shrink-0" />
-                <span className="text-blue-100/80">R. Arquitecto Borges Vinagre 282 A | Edíficio - Sarcoball SL9,<br/> Barcelos, Portugal</span>
+                <span className="text-blue-100/80">R. Arquitecto Borges Vinagre 282 A | Edíficio - Sarcoball SL9,<br /> Barcelos, Portugal</span>
               </div>
               <div className="flex gap-4 items-center">
                 <Phone className="h-5 w-5 text-secondary shrink-0" />
                 <span className="text-blue-100/80">(+351) 912 099 663</span>
               </div>
               <div className="flex gap-4 items-center">
-                 <Mail className="h-5 w-5 text-secondary shrink-0" />
+                <Mail className="h-5 w-5 text-secondary shrink-0" />
                 <span className="text-blue-100/80">reservastravelbarcelos@outlook.pt</span>
               </div>
             </div>

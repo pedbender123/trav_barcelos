@@ -1,16 +1,56 @@
-# React + Vite
+# Travel Barcelos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto de demonstração para agência de viagens.
 
-Currently, two official plugins are available:
+## Visão Geral
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Frontend em React (Vite) e Backend em Flask (Python).
+O sistema é totalmente dockerizado e pronto para deploy.
 
-## React Compiler
+## Portas de Configuração
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: 4001
+- **Backend API**: 4002
 
-## Expanding the ESLint configuration
+*Nota: A porta 3001 foi liberada para evitar conflitos.*
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Como colocar em produção (Deploy)
+
+Este projeto foi configurado para ser "Clone & Run".
+
+### Pré-requisitos
+- Docker e Docker Compose instalados.
+- Porta 4001 e 4002 livres.
+
+### Passos
+
+1. Clone o repositório:
+```bash
+git clone <seu-repo-url>
+cd trav_barcelos
+```
+
+2. Suba os containers:
+```bash
+docker-compose up -d --build
+```
+
+**Isso irá:**
+- Construir o Frontend e o Backend.
+- O Backend irá **automaticamente** criar e popular o banco de dados (`travel.db`) com dados de exemplo se ele não existir.
+- O Nginx irá servir o frontend na porta 4001 e fazer proxy das requisições `/api` para o backend na porta 4002.
+
+3. Acesse:
+- http://localhost:4001 (ou IP da sua VPS:4001)
+
+## Estrutura
+
+- `/src`: Código do Frontend.
+- `/backend`: Código Python/Flask.
+- `docker-compose.yml`: Orquestração dos serviços.
+- `nginx.conf`: Configuração do proxy reverso.
+
+## Notas Importantes
+
+- O banco de dados é recriado automaticamente se apagado (`seed.py` roda no início).
+- O Frontend usa caminhos relativos na API (`/api/offers`), então funciona em qualquer domínio/IP.

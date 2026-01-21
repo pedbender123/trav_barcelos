@@ -10,6 +10,6 @@ COPY . .
 # Initialize DB during build
 RUN python seed.py
 
-EXPOSE 3001
+EXPOSE 4002
 
 CMD ["python", "app.py"]
